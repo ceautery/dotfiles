@@ -35,3 +35,6 @@ PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 # Run FZF install script first
 source ~/.fzf.bash
+
+# Load custom .vimrc if one exists in CWD
+alias vim='[ -e .vimrc ] && HOME=. vim || vim'

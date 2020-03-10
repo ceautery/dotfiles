@@ -32,3 +32,6 @@ alias ber='bundle exec rspec'
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
+# Run FZF install script first
+source ~/.fzf.bash

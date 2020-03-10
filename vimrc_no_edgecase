@@ -1,0 +1,17 @@
+source $VIMRUNTIME/defaults.vim
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.vim/bundle/ack.vim
+" cd to .vim/bundle, then: git clone https://github.com/mileszs/ack.vim.git
+"
+set ttimeoutlen=0
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+
+map y% :let @+ = expand("%")<cr>
+map <Leader>t :<C-U>FZF<CR>
+map g/ :Ack!<space>
+map g* :Ack! -w <C-R><C-W><space>
+
+highlight MatchParen term=underline cterm=underline gui=underline guibg=NONE ctermbg=NONE
+set expandtab tabstop=2 softtabstop=2 shiftwidth=2
+set smarttab

@@ -37,4 +37,13 @@ PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 source ~/.fzf.bash
 
 # Load custom .vimrc if one exists in CWD
-alias vim='[ -e .vimrc ] && HOME=. vim || vim'
+function localvim {
+  if [ -e .vimrc ];
+  then
+    HOME=. vim "$@"
+  else
+    vim "$@"
+  fi
+}
+
+alias vim=localvim

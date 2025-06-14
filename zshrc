@@ -9,7 +9,7 @@ export PROMPT="%1~ # "
 # - Commands prefaced by a space
 HISTSIZE=10000
 SAVEHIST=10000
-HISTORY_IGNORE='(br *|c|cd *|code|echo *|ff|gitx|gs|n|vim|x)'
+HISTORY_IGNORE='((c|cd|code|ff|fg|gitx|gs|n|sh|vim|x)|(echo|ls)*)'
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 
@@ -65,6 +65,10 @@ alias br='bin/rails'
 eval "$(~/.local/bin/mise activate)"
 
 # path additions
+# ~/.bun/bin - Bun (Node drop-in replacement written in Zig: https://bun.sh/)
 # /usr/local/sbin - Homebrew
 # ~/dev/tools/flutter/bin - Flutter SDK
-export PATH="/usr/local/sbin:$HOME/dev/tools/flutter/bin:$PATH"
+export PATH="$HOME/.bun/bin/usr/local/sbin:$HOME/dev/tools/flutter/bin:$PATH"
+
+# bun completions
+[ -s "/Users/curtis/.bun/_bun" ] && source "/Users/curtis/.bun/_bun"

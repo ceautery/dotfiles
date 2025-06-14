@@ -1,0 +1,20 @@
+{
+  "dart.flutterSdkPath": "/Users/curtis/dev/tools/flutter",
+  "github.copilot.selectedCompletionModel": "",
+  "html.format.contentUnformatted": "",
+  "editor.indentSize": "tabSize",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "files.insertFinalNewline": true,
+  "prettier.documentSelectors": [
+    "**/*.astro",
+    "**/*.css"
+  ],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.formatOnSave": true
+}

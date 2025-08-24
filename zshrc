@@ -17,58 +17,63 @@ setopt HIST_IGNORE_SPACE
 export EDITOR=vim
 #==
 
+#== folder shortcuts
+alias a='cd /Users/cautery/dev/cyberstar/api'
+alias m='cd /Users/cautery/dev/cyberstar'
+alias u='cd /Users/cautery/dev/cyberstar/frontend'
+#==
 
 #== macos app shortcuts
 alias gitx='open -a GitX .'
 alias code='open -a Visual\ Studio\ Code .'
 #==
 
-
 #== git shortcuts
 alias c='git branch --show-current'
 alias ff='git pull --ff-only'
 alias gc='git checkout'
 alias gs='git status'
+alias ga='git status -uall'
 alias nf='git ls-files --others --exclude-standard'
 #==
 
+#== misc shortcuts
+# start Open WebUI - make sure Ollama is running first
+alias ow='cd ~/dev/tools/open-webui && . ./bin/activate && open-webui serve'
+alias ds='docker compose stop'
+# alias fng='find . -type d -name ".git" -prune -o -print'
+fng() {
+  local dir action
+  dir="${1:-.}"                   # Directory (default: .)
+  action="${2:--print}"           # Action (default: -print if not given)
 
-#== blog
-alias n='cd ~/dev/autery.net'
-export BLOG_BUCKET=autery-blog
-export BLOG_DISTRO_ID=E2L5IEAFAZ9J3N
+  find "$dir" -type d -name .git -prune -o $action
+}
+
+# count rows in multiple tables
+tblcounts() {
+  # Usage: tblcounts table1 table2 ...
+  local query=""
+  for t in "$@"; do
+    [[ -n $query ]] && query+=" UNION ALL "
+    query+="SELECT COUNT(*) FROM $t"
+  done
+  mysql -BNe "$query"
+}
 #==
-
 
 #== fzf fun
 # shell completions - makes ctrl-r more searchable
-source /opt/homebrew/Cellar/fzf/0.61.0/shell/key-bindings.zsh
+source /opt/homebrew/Cellar/fzf/0.65.1/shell/key-bindings.zsh
 
 # file preview
 alias fp="fzf --preview='cat {}' --preview-window=:75%:wrap"
 #==
 
-
-#== misc
-alias x='exit'
-alias apl='apserver &; apl --noColor'
-
-# export AOC_SESSION="xxx"
-
-# function gi {
-#   curl "https://adventofcode.com/2023/day/$1/input" -H "cookie: session=$AOC_SESSION" --compressed
-# }
-#==
-
-# Rails 8
-alias br='bin/rails'
-eval "$(~/.local/bin/mise activate)"
-
 # path additions
-# ~/.bun/bin - Bun (Node drop-in replacement written in Zig: https://bun.sh/)
-# /usr/local/sbin - Homebrew
-# ~/dev/tools/flutter/bin - Flutter SDK
-export PATH="$HOME/.bun/bin:usr/local/sbin:$HOME/dev/tools/flutter/bin:$PATH"
+export PATH="$HOME/.bun/bin:/opt/homebrew/bin:$PATH"
 
 # bun completions
-[ -s "/Users/curtis/.bun/_bun" ] && source "/Users/curtis/.bun/_bun"
+[ -s "/Users/cautery/.bun/_bun" ] && source "/Users/cautery/.bun/_bun"
+eval "$(mise activate)"
+
